@@ -1,0 +1,87 @@
+// ------------ prefixer ------------
+@mixin prefixer($property,$value,$prefixes:()) {
+    @each $prefix in $prefixes {
+      #{"-" + $prefix + "-" + $property}: $value;
+    }
+    #{$property}: $value;
+  }
+  
+  // ------------ border ------------
+  @mixin border-radius($radius) {
+    @include prefixer(border-radius, $radius, ('webkit', 'moz', 'ms'));
+  }
+  
+  @mixin border-color($color) {
+    @include prefixer(border-color, $color, ('webkit', 'moz', 'ms'));
+  }
+  
+  @mixin border-radius-top-left($topleft) {
+    @include prefixer(border-top-left-radius, $topleft, ('webkit', 'moz'));
+  }
+  
+  @mixin border-radius-top-right($topright) {
+    @include prefixer(border-top-right-radius, $topright, ('webkit', 'moz'));
+  }
+  
+  @mixin border-radius-bottom-right($bottomright) {
+    @include prefixer(border-bottom-right-radius, $bottomright, ('webkit', 'moz'));
+  }
+  
+  @mixin border-radius-bottom-left($bottomleft) {
+    @include prefixer(border-bottom-left-radius, $bottomleft, ('webkit', 'moz'));
+  }
+  
+  // ------------ animation ------------
+  @mixin box-shadow($box-shadow) {
+    @include prefixer(box-shadow, $box-shadow, ('webkit', 'moz'));
+  }
+  
+  @mixin transition($transition) {
+    @include prefixer(transition, $transition, ('webkit', 'moz', 'ms', 'o'));
+  }
+  
+  @mixin transform($transforms) {
+    @include prefixer(transform, $transforms, ('webkit', 'moz', 'ms', 'o'));
+  }
+
+// margin auto
+@mixin mrg-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+//width and height
+@mixin size($width,$height:$width) {
+    width: $width;
+    height: $height;
+  }
+
+// background image
+@mixin background-image($imgpath,$position:center,$repeat: no-repeat,$size:cover) {
+
+     background:url($imgpath);
+     background-position: $position;
+     background-repeat: $repeat;
+     background-size: $size;
+     
+    }
+  
+
+  // ------------ form ------------
+@mixin placeholder() {
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &::placeholder {
+    @content;
+  }
+}
